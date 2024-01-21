@@ -1,21 +1,104 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <title>MDP Machine</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <title>MDP Machine</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script>
+    $(document).ready(function () {
+    $(".nav-item > a").on('click', function () {
+        // Remove the 'active' class from all elements with class 'nav-item'
+        $(".nav-item > a").removeClass("active");
+        // Add the 'active' class to the clicked element
+        $(this).addClass("active");
+    });
+});
+
+</script>
 </head>
-<body>
-    <nav class="navbar bg-body-tertiary">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="#">
-            <img src="/docs/5.3/assets/brand/bootstrap-logo.svg" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
-            Bootstrap
-          </a>
+
+<body class="body">
+
+  <script>
+    function changeClass() {
+      var element = document.querySelector("#myDiv");
+      element.classList.replace("oldClass", "newClass");
+    }
+  </script>
+
+  <header class="d-flex flex-wrap justify-content-center py-3 mr-10 ml-10 border-bottom">
+    <a href="./" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-decoration-none">
+      <img src="./images/logo.png" class="bi me-2" alt="Logo" width="75" height="75"><use xlink:href="#bootstrap"></use>
+      <span class="fs-4" style="margin-left: 5px; width: fit-content;"><h1 id="mdp" style="font-size: clamp(5px,10vw,50px);"><b><i>MDP</i> Machine</b></h1></span>
+    </a>
+      
+
+    <ul class="nav nav-pills bold">
+      <li class="nav-item"><a id="home" href="/" class="nav-link active" aria-current="page"><b>Home</b></a></li>
+      <li class="nav-item"><a id="slider" href="#carouselExampleCaptions" class="nav-link">Slider</a></li>
+      <li class="nav-item"><a id="pricing" href="#" class="nav-link">Pricing</a></li>
+      <li class="nav-item"><a id="faq" href="#" class="nav-link">FAQs</a></li>
+      <li class="nav-item"><a id="about" href="#" class="nav-link">About</a></li>
+    </ul>
+  </header>
+
+  <div id="carouselExampleCaptions" class="carousel slide" style="margin-top:2%" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
+        aria-current="true" aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
+        aria-label="Slide 2"></button>
+      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
+        aria-label="Slide 3"></button>
+    </div>
+    <div class="carousel-inner">
+      <div class="carousel-item active" data-bs-interval="10000000">
+        <img src="./images/gradcam.png" class="d-block w-100" alt="...">
+        <div class="carousel-caption d-none d-md-block text-dark d-flex align-content-center">
+          <h5><mark>First slide label</mark></h5>
+          <p><mark>Some representative placeholder content for the first slide.</mark></p>
         </div>
-      </nav>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+      </div>
+      <div class="carousel-item" data-bs-interval="10000">
+        <img src="..." class="d-block w-100" alt="...">
+        <div class="carousel-caption d-none d-md-block">
+          <h5>Second slide label</h5>
+          <p>Some representative placeholder content for the second slide.</p>
+        </div>
+      </div>
+      <div class="carousel-item" data-bs-interval="10000">
+        <img src="..." class="d-block w-100" alt="...">
+        <div class="carousel-caption d-none d-md-block">
+          <h5>Third slide label</h5>
+          <p>Some representative placeholder content for the third slide.</p>
+        </div>
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+
+  <section>
+    <div class="box">
+
+    </div>
+  </section>
+  
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+    crossorigin="anonymous"></script>
 </body>
+
 </html>

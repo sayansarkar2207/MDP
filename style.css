@@ -1,0 +1,43 @@
+:root{
+    --color1:#FFAA00;
+    --color2:#F6E5DF;
+    --color3:#A56F5D;
+}
+.body {
+    background-color: var(--color2);
+}
+.body::-webkit-scrollbar{
+    display: none;
+}
+header{
+    background-color:var(--color1);
+    padding-left: 5%;
+    padding-right: 5%;
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+}
+.nav-pills{
+    height: 40px!important;
+    margin-top: 1%;
+    font-size: larger;
+}
+.nav-item:hover{
+    transform: scale(1.1);
+}
+.bold{
+    font-weight: bold;
+}
+.nav-item{
+    font-size: clamp(15px,2.5vw,25px);
+}
+#carouselExampleCaptions{
+    margin-left: 5%!important;
+    margin-right: 5%!important;
+}
+.box{
+    background-color: var(--color3);
+    margin: 2% 5%!important;
+    width:auto;
+    height: 50vw;
+    border-radius: 30px;
+}
