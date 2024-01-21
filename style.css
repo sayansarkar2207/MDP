@@ -28,7 +28,7 @@ header{
     font-weight: bold;
 }
 .nav-item{
-    font-size: clamp(15px,2.5vw,25px);
+    font-size: clamp(13px,2.5vw,25px);
 }
 #carouselExampleCaptions{
     margin-left: 5%!important;
