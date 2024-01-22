@@ -95,3 +95,6 @@ footer{
 .imgs{
     border-radius: 10px!important;
 }
+footer>p{
+    padding-top: 2%;
+}

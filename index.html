@@ -21,7 +21,7 @@
 </script>
 </head>
 
-<body onload="output_show()" class="body">
+<body class="body">
 
   <script>
     function changeClass() {
@@ -111,13 +111,6 @@
 
 
   <footer class="footer">
-    <ul class="nav justify-content-center border-bottom pb-3 mb-3">
-      <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Home</a></li>
-      <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Features</a></li>
-      <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Pricing</a></li>
-      <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">FAQs</a></li>
-      <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">About</a></li>
-    </ul>
     <p class="text-center text-body-secondary">© 2024 MDP Machine, Inc</p>
   </footer>
   
@@ -216,11 +209,20 @@
     var imageUrl = "./images/result/" + filename+".png";
     if(filename==104)
     {
-      imageUrl = document.getElementById("input_image").src;
+      imageUrl = applyGaussianBlur();
     }
-    document.getElementById("output_image").src = imageUrl;
+    else{
+      document.getElementById("output_image").src = imageUrl;
+      document.getElementById("output_image").style.filter = 'blur(0px)';
+    }
     return;
   }
+  function applyGaussianBlur() {
+    document.getElementById("output_image").src = document.getElementById('input_image').src;
+
+    // Apply blur using CSS filter property
+    document.getElementById("output_image").style.filter = 'blur(5px)';
+}
 </script>
 
 
