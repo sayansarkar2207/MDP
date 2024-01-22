@@ -99,9 +99,7 @@
             </div>
             <div class="card-body">
               <img id="output_image" class="imgs" src="./images/SampleOutput.png"  width="100%"/>
-              <form method="POST" action="/send_data">
-                <button id="predict" type="submit" class="w-100 btn btn-lg btn-outline-primary">Predict</button>
-              </form>
+                <button id="predict" type="button" class="w-100 btn btn-lg btn-outline-primary" onclick="run()">Predict</button>
             </div>
           </div>
         </div>
@@ -133,6 +131,10 @@
 
 
 <script type="text/javascript">
+  function run(){
+    compareWithTestImages(document.getElementById('input_image').src);
+  }
+
   function preview_image(event) {
     var reader = new FileReader();
     reader.onload = function() {
