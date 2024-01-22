@@ -1,7 +1,8 @@
 :root{
-    --color1:#FFAA00;
+    --color1:#ffb624;
     --color2:#F6E5DF;
-    --color3:#A56F5D;
+    --color3:#5c3e35;
+    --color4:#ffffff;
 }
 .body {
     background-color: var(--color2);
@@ -24,11 +25,20 @@ header{
 .nav-item:hover{
     transform: scale(1.1);
 }
+.nav-item>a:hover{
+    color: var(--color3);
+}
+.nav-pills .nav-link.active, .nav-pills .show>.nav-link{
+background-color: var(--color3)!important;
+}
 .bold{
     font-weight: bold;
 }
 .nav-item{
-    font-size: clamp(12px,2.5vw,25px);
+    font-size: clamp(13px,2.5vw,25px)!important;
+}
+.nav-item>a{
+    color: var(--color3);
 }
 #carouselExampleCaptions{
     margin-left: 5%!important;
@@ -38,6 +48,50 @@ header{
     background-color: var(--color3);
     margin: 2% 5%!important;
     width:auto;
-    height: 50vw;
+    height: auto;
     border-radius: 30px;
+    padding: 3%;
+}
+#mdp{
+    color: var(--color3);
+}
+
+footer{
+    background-color: var(--color1);
+    padding-left: 5%;
+    padding-right: 5%;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+    width: 100%;
+    font-weight: bold;
+    padding-bottom: 0.5rem!important;
+}
+.row{
+    --bs-gutter-y:3%!important;
+    --bs-gutter-x:3%!important;
+}
+.btn-outline-primary{
+    --bs-btn-border-color: var(--color3)!important;
+    border-width: 0.2rem!important;
+    color: var(--color3)!important;
+    font-weight: bold!important;
+    margin-top: 1rem!important;
+}
+.btn-outline-primary:hover{
+    background-color: var(--color3)!important;
+    color: var(--color4)!important;
+    border-color: var(--color1)!important;
+}
+.card-header{
+    background-color: var(--color1)!important;
+}
+.card-header>h4{
+    font-weight: bold!important;
+    color: var(--color3)!important;
+}
+.card{
+    background-color: var(--color2)!important;
+}
+.imgs{
+    border-radius: 10px!important;
 }

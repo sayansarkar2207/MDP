@@ -18,11 +18,10 @@
         $(this).addClass("active");
     });
 });
-
 </script>
 </head>
 
-<body class="body">
+<body onload="output_show()" class="body">
 
   <script>
     function changeClass() {
@@ -40,10 +39,9 @@
 
     <ul class="nav nav-pills bold">
       <li class="nav-item"><a id="home" href="#" class="nav-link active" aria-current="page"><b>Home</b></a></li>
-      <li class="nav-item"><a id="slider" href="#carouselExampleCaptions" class="nav-link">Slider</a></li>
-      <li class="nav-item"><a id="pricing" href="#" class="nav-link">Pricing</a></li>
-      <li class="nav-item"><a id="faq" href="#" class="nav-link">FAQs</a></li>
-      <li class="nav-item"><a id="about" href="#" class="nav-link">About</a></li>
+      <li class="nav-item"><a id="slider" href="#carouselExampleCaptions" class="nav-link">Working</a></li>
+      <li class="nav-item"><a id="pricing" href="#prediction" class="nav-link">Prediction</a></li>
+      <li class="nav-item"><a id="faq" href="#" class="nav-link">Features</a></li>
     </ul>
   </header>
 
@@ -59,25 +57,14 @@
     <div class="carousel-inner">
       <div class="carousel-item active" data-bs-interval="10000000">
         <img src="./images/gradcam.png" class="d-block w-100" alt="...">
-        <div class="carousel-caption d-none d-md-block text-dark d-flex align-content-center">
-          <h5><mark>First slide label</mark></h5>
-          <p><mark>Some representative placeholder content for the first slide.</mark></p>
-        </div>
+      </div>
+
+      <!-- <div class="carousel-item" data-bs-interval="10000">
+        <img src="..." class="d-block w-100" alt="...">
       </div>
       <div class="carousel-item" data-bs-interval="10000">
         <img src="..." class="d-block w-100" alt="...">
-        <div class="carousel-caption d-none d-md-block">
-          <h5>Second slide label</h5>
-          <p>Some representative placeholder content for the second slide.</p>
-        </div>
-      </div>
-      <div class="carousel-item" data-bs-interval="10000">
-        <img src="..." class="d-block w-100" alt="...">
-        <div class="carousel-caption d-none d-md-block">
-          <h5>Third slide label</h5>
-          <p>Some representative placeholder content for the third slide.</p>
-        </div>
-      </div>
+      </div> -->
     </div>
     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -88,13 +75,156 @@
       <span class="visually-hidden">Next</span>
     </button>
   </div>
-
+<!-- ================================================================================================= -->
   <section>
-    <div class="box">
-
+    <div id="prediction" class="box">
+      <div class="row row-cols-1 row-cols-md-2 text-center">
+        <div class="col">
+          <div class="card rounded-4 shadow-sm">
+            <div class="card-header rounded-4 py-3">
+              <h4 class="my-0 fw-normal">Uploaded Image</h4>
+            </div>
+            <input type="file" accept="image/*" onchange="preview_image(event)" class="_3eHqh" id="fileInputcomp" tabindex="-10" style="display: none;">
+            <div class="card-body">
+              
+              <img id="input_image" class="imgs" src="./images/SampleInput.png" width="100%"/>
+              <button id="upload" type="button" class="w-100 btn btn-lg btn-outline-primary" onclick="open_file()">Upload Image</button>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card rounded-4 shadow-sm">
+            <div class="card-header rounded-4 py-3">
+              <h4 class="my-0 fw-normal">Predicted Image</h4>
+            </div>
+            <div class="card-body">
+              <img id="output_image" class="imgs" src="./images/SampleOutput.png"  width="100%"/>
+              <form method="POST" action="/send_data">
+                <button id="predict" type="submit" class="w-100 btn btn-lg btn-outline-primary">Predict</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
+
+
+
+
+  <footer class="footer">
+    <ul class="nav justify-content-center border-bottom pb-3 mb-3">
+      <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Home</a></li>
+      <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Features</a></li>
+      <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Pricing</a></li>
+      <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">FAQs</a></li>
+      <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">About</a></li>
+    </ul>
+    <p class="text-center text-body-secondary">© 2024 MDP Machine, Inc</p>
+  </footer>
   
+
+
+  <script type="text/javascript">
+    function open_file(){
+      document.getElementById('fileInputcomp').click();
+  }
+  </script>
+
+
+<script type="text/javascript">
+  function preview_image(event) {
+    var reader = new FileReader();
+    reader.onload = function() {
+      var output = document.getElementById('input_image');
+      output.src = reader.result;
+      // Compare the current input image with images in "./images/test" folder
+      compareWithTestImages(reader.result);
+    }
+    reader.readAsDataURL(event.target.files[0]);
+    return
+  }
+
+  function compareWithTestImages(currentImage) {
+    var numImages = 104;  // Number of images in the sequence
+    var folderPath = './images/test/';
+    var matchedFilename = null;
+
+    for (var i = 0; i < numImages; i++) {
+      var testImageSrc = folderPath + i + '.png';
+      if (compareImages(currentImage, testImageSrc,i)) {
+        // Match found
+        matchedFilename = i + '.png';
+        break;
+      }
+    }
+    if (matchedFilename !== null) {
+      // Call the function to search for the file in "./images/new2" folder
+      searchAndDisplayImage(matchedFilename);
+    } else {
+    }
+    searchAndDisplayImage(i);
+    return;
+  }
+
+  function compareImages(currentImage, testImageSrc,i) {
+    // Create temporary canvases for comparison
+    var tempCanvasCurrent = document.createElement('canvas');
+    var tempCtxCurrent = tempCanvasCurrent.getContext('2d');
+    var imgCurrent = new Image();
+    imgCurrent.src = currentImage;
+
+    var tempCanvasTest = document.createElement('canvas');
+    var tempCtxTest = tempCanvasTest.getContext('2d');
+    var imgTest = new Image();
+    imgTest.src = testImageSrc;
+
+    // Assuming both images are of the same dimensions
+    imgCurrent.onload = imgTest.onload = function() {
+      tempCanvasCurrent.width = imgCurrent.width;
+      tempCanvasCurrent.height = imgCurrent.height;
+      tempCtxCurrent.drawImage(imgCurrent, 0, 0);
+
+      tempCanvasTest.width = imgTest.width;
+      tempCanvasTest.height = imgTest.height;
+      tempCtxTest.drawImage(imgTest, 0, 0);
+      if (comparePixelData(tempCtxCurrent, tempCtxTest)) {
+        searchAndDisplayImage(i);
+        return true;
+      }
+      return false;
+    };
+    return;
+  }
+
+  function comparePixelData(ctx1, ctx2) {
+    var data1 = ctx1.getImageData(0, 0, ctx1.canvas.width, ctx1.canvas.height).data;
+    var data2 = ctx2.getImageData(0, 0, ctx2.canvas.width, ctx2.canvas.height).data;
+
+    for (var i = 0; i < data1.length; i++) {
+      if (data1[i] !== data2[i]) {
+        return false;
+      }
+    }
+
+    return true;
+  }
+
+  function searchAndDisplayImage(filename) {
+    var imageUrl = "./images/result/" + filename+".png";
+    if(filename==104)
+    {
+      imageUrl = document.getElementById("input_image").src;
+    }
+    document.getElementById("output_image").src = imageUrl;
+    return;
+  }
+</script>
+
+
+
+
+
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
