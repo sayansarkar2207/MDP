@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="style.css">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
   <title>MDP Machine</title>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script>
@@ -107,14 +108,49 @@
     </div>
   </section>
 
+  <button id="darkModeToggle" class="fixed-bottom-right">
+    <i class="iconmy fas fa-moon"></i>
+  </button>
+
 
 
 
   <footer class="footer">
-    <p class="text-center text-body-secondary">© 2024 MDP Machine, Inc</p>
+    <p class="text-center">© 2024 MDP Machine, Inc</p>
   </footer>
   
 
+  <script type="text/javascript">
+    document.addEventListener('DOMContentLoaded', function () {
+    const darkModeToggle = document.getElementById('darkModeToggle');
+    const moonIcon = darkModeToggle.querySelector('.fa-moon');
+    darkModeToggle.addEventListener('click', function () {
+        // Toggle dark mode by changing color variables
+        document.documentElement.classList.toggle('dark-mode');
+        
+
+        // You can customize the colors for dark mode here
+        if (document.documentElement.classList.contains('dark-mode')) {
+            moonIcon.classList.remove('fa-moon');
+            moonIcon.classList.add('fa-sun');
+            document.documentElement.style.setProperty('--color1', '#220066');
+            document.documentElement.style.setProperty('--color2', '#330033');
+            document.documentElement.style.setProperty('--color3', '#d1b3ff');
+            document.documentElement.style.setProperty('--color4', '#000000');
+        } 
+        else {
+            // Reset to default colors for light mode
+            moonIcon.classList.remove('fa-sun');
+            moonIcon.classList.add('fa-moon');
+            document.documentElement.style.removeProperty('--color1');
+            document.documentElement.style.removeProperty('--color2');
+            document.documentElement.style.removeProperty('--color3');
+            document.documentElement.style.removeProperty('--color4');
+        }
+    });
+  });
+
+  </script>
 
   <script type="text/javascript">
     function open_file(){
